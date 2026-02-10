@@ -17,4 +17,8 @@ void main() {
   test('converts 5 to V', () {
     expect(roman_numerals.integerToRoman(5), 'V');
   });
+
+  test('converts 4 to IV', () {
+    expect(roman_numerals.integerToRoman(4), 'IV');
+  });
 }
