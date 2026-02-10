@@ -10,7 +10,7 @@ class BowlingGame {
     int rollIndex = 0;
 
     for (int frame = 0; frame < 10; frame++) {
-      if (_rolls[rollIndex] + _rolls[rollIndex + 1] == 10) {
+      if (_isSpare(rollIndex)) {
         totalScore += 10 + _rolls[rollIndex + 2];
         rollIndex += 2;
       } else {
@@ -20,5 +20,9 @@ class BowlingGame {
     }
 
     return totalScore;
+  }
+
+  bool _isSpare(int rollIndex) {
+    return _rolls[rollIndex] + _rolls[rollIndex + 1] == 10;
   }
 }
