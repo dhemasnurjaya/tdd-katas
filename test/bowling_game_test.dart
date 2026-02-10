@@ -3,23 +3,25 @@ import 'package:test/test.dart';
 
 void main() {
   group('Bowling Game', () {
-    test('gutter game - all zeros', () {
-      final game = BowlingGame();
+    late BowlingGame game;
 
-      for (int i = 0; i < 20; i++) {
-        game.roll(0);
+    setUp(() {
+      game = BowlingGame();
+    });
+
+    void rollMany(int times, int pins) {
+      for (int i = 0; i < times; i++) {
+        game.roll(pins);
       }
+    }
 
+    test('gutter game - all zeros', () {
+      rollMany(20, 0);
       expect(game.score(), 0);
     });
 
     test('all ones - score is 20', () {
-      final game = BowlingGame();
-
-      for (int i = 0; i < 20; i++) {
-        game.roll(1);
-      }
-
+      rollMany(20, 1);
       expect(game.score(), 20);
     });
   });
