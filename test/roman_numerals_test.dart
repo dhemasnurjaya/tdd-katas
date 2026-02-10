@@ -66,5 +66,19 @@ void main() {
         () => expect(integerToRoman(3999), 'MMMCMXCIX'),
       );
     });
+
+    group('Error Handling', () {
+      test('rejects zero', () {
+        expect(() => integerToRoman(0), throwsArgumentError);
+      });
+
+      test('rejects negative numbers', () {
+        expect(() => integerToRoman(-5), throwsArgumentError);
+      });
+
+      test('rejects numbers above 3999', () {
+        expect(() => integerToRoman(4000), throwsArgumentError);
+      });
+    });
   });
 }
