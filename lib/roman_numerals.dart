@@ -15,6 +15,10 @@ String integerToRoman(int number) {
     (1, 'I'),
   ];
 
+  if (number <= 0 || number > 3999) {
+    throw ArgumentError('Number must be between 1 and 3999');
+  }
+
   final result = StringBuffer();
   var remaining = number;
 
