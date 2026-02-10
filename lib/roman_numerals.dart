@@ -1,5 +1,5 @@
 String integerToRoman(int number) {
-  const romanSymbols = {6: 'VI', 5: 'V', 1: 'I'};
+  const romanSymbols = {7: 'VII', 6: 'VI', 5: 'V', 1: 'I'};
 
   if (_isSubtractiveCase(number)) {
     return romanSymbols[1]! + romanSymbols[5]!;
