@@ -1,5 +1,6 @@
 String integerToRoman(int number) {
   const conversionRules = [
+    (50, 'L'),
     (40, 'XL'),
     (10, 'X'),
     (9, 'IX'),
