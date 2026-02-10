@@ -58,13 +58,47 @@ integerToRoman(0);    // Throws: ArgumentError
 
 ---
 
-### 2. [Next Kata Name] 🚧
+### 2. Bowling Game ✅
 
-**Status:** Not yet started  
-**Implementation:** `lib/[next_kata].dart`  
-**Tests:** `test/[next_kata]_test.dart`
+**Implementation:** [`lib/bowling_game.dart`](lib/bowling_game.dart)  
+**Tests:** [`test/bowling_game_test.dart`](test/bowling_game_test.dart)
 
-*Coming soon...*
+Calculates scores for a bowling game following official scoring rules with look-ahead bonus logic for strikes and spares.
+
+#### Domain Context
+
+A bowling game consists of 10 frames where players roll a ball to knock down pins:
+
+**Scoring Rules:**
+1. **Normal Frame:** Sum of pins knocked down (e.g., 3 + 4 = 7)
+2. **Spare (/):** All 10 pins in 2 rolls → Score = 10 + next 1 roll
+3. **Strike (X):** All 10 pins in 1 roll → Score = 10 + next 2 rolls
+4. **10th Frame:** Bonus rolls awarded if spare or strike achieved
+
+#### Key Design Decisions
+
+**State Management:** Stores all rolls in a list and calculates score by iterating through frames, not individual rolls.
+
+**Look-Ahead Logic:** Spares and strikes require examining future rolls for bonus calculation—the algorithm walks forward strategically.
+
+**Frame Advancement:** Strikes consume 1 roll, spares/normal frames consume 2 rolls—the algorithm tracks position correctly.
+
+#### Usage
+
+```dart
+import 'package:tdd_katas/bowling_game.dart';
+
+final game = BowlingGame();
+game.roll(10); // Strike!
+game.roll(3);
+game.roll(4);
+// ... continue rolling
+print(game.score()); // Calculates total with bonuses
+```
+
+#### The "Aha!" Moment
+
+Tests for simple cases (gutter game, one spare, one strike) drove an algorithm that automatically handles complex scenarios like perfect games (300 points) without explicit implementation. **This is TDD's magic—correct abstractions emerge naturally.**
 
 ---
 
@@ -86,6 +120,7 @@ dart test
 
 # Run specific test file
 dart test test/roman_numerals_test.dart
+dart test test/bowling_game_test.dart
 
 # Run with coverage
 dart test --coverage
@@ -160,12 +195,103 @@ Boundary tests for the valid range (1-3999)
 
 ---
 
+## Bowling Game: Detailed Journey
+
+### Test Strategy
+
+Tests are organized by **scoring complexity**, mirroring how the domain rules build on each other:
+
+**Basic Scoring:**
+- Gutter game (all zeros)
+- All ones (simple addition)
+
+**Spare Bonus (next 1 roll):**
+- One spare in first frame
+- All spares (150 points)
+
+**Strike Bonus (next 2 rolls):**
+- One strike in first frame
+- Perfect game (300 points)
+
+**Complex Scenarios:**
+- Combinations of strikes, spares, and normal frames
+
+### Development Timeline
+
+1. **Red:** Gutter game test
+2. **Green:** Return 0 (simplest implementation)
+3. **Red:** All ones test
+4. **Green:** Store rolls, sum them in `score()`
+5. **Refactor:** Extract `rollMany()` helper, add `setUp()`
+6. **Red:** One spare test
+7. **Green:** Detect spare, add look-ahead bonus (+1 roll)
+8. **Refactor:** Extract `_isSpare()` helper
+9. **Red:** One strike test
+10. **Green:** Detect strike, add look-ahead bonus (+2 rolls)
+11. **Refactor:** Extract `_isStrike()`, clean up frame advancement
+12. **Validate:** Perfect game test passes without modification!
+
+### Key Insights
+
+**Emergent Design:** The algorithm structure wasn't planned upfront. Tests for simple cases forced:
+- Frame-based iteration (not roll-based)
+- Index tracking (advancing by 1 or 2)
+- Look-ahead logic (accessing future rolls)
+
+**The Perfect Game Moment:** Writing code to handle "one spare" and "one strike" automatically handled "12 consecutive strikes" (300 points). The algorithm correctly models the domain, so all valid games work.
+
+**State vs. Behavior:** Initially tempting to model Frame objects with state. TDD revealed a simpler truth: just store rolls and calculate on-demand. No frame objects needed.
+
+---
+
+## Comparing the Katas
+
+### Roman Numerals vs. Bowling Game
+
+| Aspect | Roman Numerals | Bowling Game |
+|--------|----------------|--------------|
+| **Complexity** | Beginner | Intermediate |
+| **State** | Stateless transformation | Stateful (rolls accumulate) |
+| **Algorithm** | Table-driven lookup | Frame iteration with look-ahead |
+| **Key Challenge** | Recognizing the pattern | Managing state and bonuses |
+| **Design Pattern** | Value Object | Strategy-like (frame types) |
+| **Lines of Code** | ~45 production | ~30 production |
+| **Aha! Moment** | Table eliminates duplication | Simple tests → complex games work |
+
+### What Each Kata Teaches
+
+**Roman Numerals:**
+- Converting domain rules into data structures
+- Value Objects for enforcing constraints
+- When to stop coding (algorithm emerges naturally)
+
+**Bowling Game:**
+- State management without over-engineering
+- Look-ahead logic in sequential data
+- How correct abstractions scale beyond test cases
+
+### Progressive Learning Path
+
+1. **Roman Numerals first:** Learn TDD fundamentals without state complexity
+2. **Bowling Game second:** Apply TDD to stateful problems
+3. **Next kata:** Choose based on what you want to practice:
+   - **String Calculator:** Parsing, validation, error handling
+   - **Gilded Rose:** Refactoring legacy code without tests
+   - **Mars Rover:** Command pattern, multiple behaviors
+
+---
+
 ## References
 
-- [Roman Numerals Rules](https://en.wikipedia.org/wiki/Roman_numerals)
+### General TDD & Clean Code
 - [Clean Code by Robert C. Martin](https://www.oreilly.com/library/view/clean-code-a/9780136083238/)
 - [Domain-Driven Design by Eric Evans](https://www.domainlanguage.com/ddd/)
 - [Test-Driven Development by Kent Beck](https://www.amazon.com/Test-Driven-Development-Kent-Beck/dp/0321146530)
+
+### Kata-Specific
+- [Roman Numerals Rules](https://en.wikipedia.org/wiki/Roman_numerals)
+- [Bowling Scoring Rules](https://en.wikipedia.org/wiki/Ten-pin_bowling#Scoring)
+- [Uncle Bob's Bowling Game Kata](http://butunclebob.com/ArticleS.UncleBob.TheBowlingGameKata)
 
 ## License
 
