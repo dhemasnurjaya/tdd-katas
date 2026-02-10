@@ -37,4 +37,8 @@ void main() {
   test('converts 9 to IX', () {
     expect(roman_numerals.integerToRoman(9), 'IX');
   });
+
+  test('converts 10 to X', () {
+    expect(roman_numerals.integerToRoman(10), 'X');
+  });
 }
