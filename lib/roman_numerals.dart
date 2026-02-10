@@ -1,10 +1,7 @@
 String integerToRoman(int number) {
-  if (number == 1) {
-    return 'I';
+  var result = '';
+  for (int i = 0; i < number; i++) {
+    result += 'I';
   }
-  if (number == 2) {
-    return 'II';
-  }
-
-  throw UnimplementedError('Conversion not implemented for $number');
+  return result;
 }
