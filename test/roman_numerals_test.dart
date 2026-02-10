@@ -49,4 +49,12 @@ void main() {
   test('converts 50 to L', () {
     expect(roman_numerals.integerToRoman(50), 'L');
   });
+
+  test('converts 90 to XC', () {
+    expect(roman_numerals.integerToRoman(90), 'XC');
+  });
+
+  test('converts 100 to C', () {
+    expect(roman_numerals.integerToRoman(100), 'C');
+  });
 }
