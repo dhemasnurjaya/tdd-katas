@@ -33,4 +33,8 @@ void main() {
   test('converts 8 to VIII', () {
     expect(roman_numerals.integerToRoman(8), 'VIII');
   });
+
+  test('converts 9 to IX', () {
+    expect(roman_numerals.integerToRoman(9), 'IX');
+  });
 }
