@@ -9,4 +9,8 @@ void main() {
   test('converts 2 to II', () {
     expect(roman_numerals.integerToRoman(2), 'II');
   });
+
+  test('converts 3 to III', () {
+    expect(roman_numerals.integerToRoman(3), 'III');
+  });
 }
