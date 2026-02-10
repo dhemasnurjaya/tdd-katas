@@ -29,4 +29,8 @@ void main() {
   test('converts 7 to VII', () {
     expect(roman_numerals.integerToRoman(7), 'VII');
   });
+
+  test('converts 8 to VIII', () {
+    expect(roman_numerals.integerToRoman(8), 'VIII');
+  });
 }
