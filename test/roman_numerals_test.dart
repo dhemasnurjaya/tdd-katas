@@ -46,6 +46,10 @@ void main() {
     expect(roman_numerals.integerToRoman(40), 'XL');
   });
 
+  test('converts 49 to XLIX', () {
+    expect(roman_numerals.integerToRoman(49), 'XLIX');
+  });
+
   test('converts 50 to L', () {
     expect(roman_numerals.integerToRoman(50), 'L');
   });
@@ -56,5 +60,21 @@ void main() {
 
   test('converts 100 to C', () {
     expect(roman_numerals.integerToRoman(100), 'C');
+  });
+
+  test('converts 400 to CD', () {
+    expect(roman_numerals.integerToRoman(400), 'CD');
+  });
+
+  test('converts 500 to D', () {
+    expect(roman_numerals.integerToRoman(500), 'D');
+  });
+
+  test('converts 900 to CM', () {
+    expect(roman_numerals.integerToRoman(900), 'CM');
+  });
+
+  test('converts 1000 to M', () {
+    expect(roman_numerals.integerToRoman(1000), 'M');
   });
 }
