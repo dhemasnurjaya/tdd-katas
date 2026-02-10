@@ -1,25 +1,15 @@
 String integerToRoman(int number) {
-  const romanSymbols = {
-    10: 'X',
-    9: 'IX',
-    8: 'VIII',
-    7: 'VII',
-    6: 'VI',
-    5: 'V',
-    1: 'I',
-  };
+  const conversionRules = [(10, 'X'), (9, 'IX'), (5, 'V'), (4, 'IV'), (1, 'I')];
 
-  if (_isSubtractiveCase(number)) {
-    return romanSymbols[1]! + romanSymbols[5]!;
+  final result = StringBuffer();
+  var remaining = number;
+
+  for (final (value, symbol) in conversionRules) {
+    while (remaining >= value) {
+      result.write(symbol);
+      remaining -= value;
+    }
   }
 
-  if (_canRepeatSymbol(number)) {
-    return romanSymbols[1]! * number;
-  }
-
-  return romanSymbols[number] ?? '';
+  return result.toString();
 }
-
-bool _isSubtractiveCase(int number) => number == 4;
-
-bool _canRepeatSymbol(int number) => number < 4;
