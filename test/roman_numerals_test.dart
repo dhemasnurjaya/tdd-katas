@@ -13,4 +13,8 @@ void main() {
   test('converts 3 to III', () {
     expect(roman_numerals.integerToRoman(3), 'III');
   });
+
+  test('converts 5 to V', () {
+    expect(roman_numerals.integerToRoman(5), 'V');
+  });
 }
