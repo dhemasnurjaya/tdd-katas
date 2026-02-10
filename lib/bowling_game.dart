@@ -1,9 +1,7 @@
 class BowlingGame {
-  void roll(int pins) {
-    throw UnimplementedError();
-  }
-  
+  void roll(int pins) {}
+
   int score() {
-    throw UnimplementedError();
+    return 0;
   }
 }
