@@ -1,4 +1,21 @@
+class RomanNumeralInput {
+  static const _minValue = 1;
+  static const _maxValue = 3999;
+
+  final int value;
+
+  RomanNumeralInput(this.value) {
+    if (value < _minValue || value > _maxValue) {
+      throw ArgumentError(
+        'Roman numeral input must be between $_minValue and $_maxValue',
+      );
+    }
+  }
+}
+
 String integerToRoman(int number) {
+  final input = RomanNumeralInput(number);
+
   const conversionRules = [
     (1000, 'M'),
     (900, 'CM'),
@@ -15,12 +32,8 @@ String integerToRoman(int number) {
     (1, 'I'),
   ];
 
-  if (number <= 0 || number > 3999) {
-    throw ArgumentError('Number must be between 1 and 3999');
-  }
-
   final result = StringBuffer();
-  var remaining = number;
+  var remaining = input.value;
 
   for (final (value, symbol) in conversionRules) {
     while (remaining >= value) {
