@@ -41,4 +41,8 @@ void main() {
   test('converts 10 to X', () {
     expect(roman_numerals.integerToRoman(10), 'X');
   });
+
+  test('converts 40 to XL', () {
+    expect(roman_numerals.integerToRoman(40), 'XL');
+  });
 }
