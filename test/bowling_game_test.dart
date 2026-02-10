@@ -33,5 +33,14 @@ void main() {
 
       expect(game.score(), 16); // 10 (spare) + 3 (bonus) + 3 (normal roll)
     });
+
+    test('one strike', () {
+      game.roll(10); // Strike!
+      game.roll(3);
+      game.roll(4); // Next 2 rolls are bonus
+      rollMany(16, 0);
+
+      expect(game.score(), 24); // 10 + 3 + 4 (strike) + 3 + 4 (frame 2) = 24
+    });
   });
 }
