@@ -1,17 +1,17 @@
 String integerToRoman(int number) {
-  var result = '';
-  for (int i = 0; i < number; i++) {
-    if (number == 5) {
-      result += 'V';
-      return result;
-    }
+  const romanSymbols = {5: 'V', 1: 'I'};
 
-    if (number == 4) {
-      result += 'IV';
-      return result;
-    }
-
-    result += 'I';
+  if (_isSubtractiveCase(number)) {
+    return romanSymbols[1]! + romanSymbols[5]!;
   }
-  return result;
+
+  if (_canRepeatSymbol(number)) {
+    return romanSymbols[1]! * number;
+  }
+
+  return romanSymbols[number] ?? '';
 }
+
+bool _isSubtractiveCase(int number) => number == 4;
+
+bool _canRepeatSymbol(int number) => number < 4;

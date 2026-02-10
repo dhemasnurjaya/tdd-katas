@@ -14,11 +14,11 @@ void main() {
     expect(roman_numerals.integerToRoman(3), 'III');
   });
 
-  test('converts 5 to V', () {
-    expect(roman_numerals.integerToRoman(5), 'V');
-  });
-
   test('converts 4 to IV', () {
     expect(roman_numerals.integerToRoman(4), 'IV');
+  });
+
+  test('converts 5 to V', () {
+    expect(roman_numerals.integerToRoman(5), 'V');
   });
 }
