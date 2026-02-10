@@ -1,3 +1,10 @@
 String integerToRoman(int number) {
-  return 'I';
+  if (number == 1) {
+    return 'I';
+  }
+  if (number == 2) {
+    return 'II';
+  }
+
+  throw UnimplementedError('Conversion not implemented for $number');
 }
